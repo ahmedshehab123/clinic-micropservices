@@ -17,6 +17,7 @@ public interface AppointmentsRepository extends JpaRepository<Appointments,Long>
 
     Page<Appointments>  findAppointmentsByPatientPatientId(Long patientId, Pageable page);
 
+    @Query("select app from Appointments  app , Patient p where app.patient.patientId = p.patientId and p.patientName like %:patientName%")
     Page<Appointments>  findAppointmentsByPatientPatientName(String patientName, Pageable page);
 
 }
